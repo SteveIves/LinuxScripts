@@ -1,0 +1,41 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides: synlm
+# Required-Start: $network $local_fs
+# Required-Stop: $network $local_fs 
+# Default-Start: 1 2 3 4 5
+# Default-Stop: 0 6
+# Short-Description: Synergy License Manager
+### END INIT INFO
+
+. /synergy/StartSynergy
+
+case $1 in
+  start)
+    echo -n "Starting Synergy License Manager"
+    synd
+    ;;
+  stop)
+    echo -n "Stopping Synergy License Manager"
+    synd -q
+    ;;
+  restart)
+    $0 stop
+    $0 start
+    ;;
+  status)
+    if ps ax | grep -v grep | grep -v rsynd | grep synd > /dev/null
+    then
+      echo "Synergy License Manager is running (process ID is `pidof synd`)"
+    else
+      echo "Synergy License Manager is NOT running"
+    fi
+    ;;
+  *)
+    echo $"Usage: synlm {start|stop|restart|status}"
+    exit 1
+esac
+
+exit 0
+

@@ -1,0 +1,41 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides: synxfs
+# Required-Start: $network $local_fs synlm
+# Required-Stop: $network $local_fs 
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Synergy xfServer
+### END INIT INFO
+
+. /synergy/StartSynergy
+
+case $1 in
+  start)
+    echo -n "Starting Synergy xfServer"
+    rsynd -n -u "xfs/\340'\302\327\330'\331X\333\023\324ET\342" -p 2330
+    ;;
+  stop)
+    echo -n "Stopping Synergy xfServer"
+    rsynd -q -c -p 2330
+    ;;
+  restart)
+    $0 stop
+    $0 start
+    ;;
+  status)
+    if ps ax | grep -v grep | grep rsynd | grep xfs | grep 2330 > /dev/null
+    then
+      echo "Synergy xfServer is running"
+    else
+      echo "Synergy xfServer is NOT running"
+    fi
+    ;;
+  *)
+    echo $"Usage: synxfs {start|stop|restart|status}"
+    exit 1
+esac
+
+exit 0
+

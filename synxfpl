@@ -1,0 +1,41 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides: synxfpl
+# Required-Start: $network $local_fs synlm
+# Required-Stop: $network $local_fs 
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Synergy xfServerPlus
+### END INIT INFO
+
+. /synergy/StartSynergy
+
+case $1 in
+  start)
+    echo -n "Starting Synergy xfServerPlus"
+    rsynd -w -u "xfpl/\346\367\230\005\336\367s\274\011\013\226\3216\002" -p 2356
+    ;;
+  stop)
+    echo -n "Stopping Synergy xfServerPlus"
+    rsynd -q -c -w -p 2356
+    ;;
+  restart)
+    $0 stop
+    $0 start
+    ;;
+  status)
+    if ps ax | grep -v grep | grep rsynd | grep xfpl | grep 2356 > /dev/null
+    then
+      echo "Synergy xfServerPlus is running"
+    else
+      echo "Synergy xfServerPlus is NOT running"
+    fi
+    ;;
+  *)
+    echo $"Usage: synxfpl {start|stop|restart|status}"
+    exit 1
+esac
+
+exit 0
+
