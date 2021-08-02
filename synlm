@@ -9,7 +9,7 @@
 # Short-Description: Synergy License Manager
 ### END INIT INFO
 
-. /synergy/StartSynergy
+. /synergy/ConfigureSynergy
 
 case $1 in
   start)
