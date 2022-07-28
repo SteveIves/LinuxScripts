@@ -1,0 +1,38 @@
+#!/bin/bash
+
+echo ""
+
+# Check License Manager
+
+RESULT=`ps -ef | grep " synd" | grep -v grep`
+if [[ -n "$RESULT" ]]
+then
+  echo "License Manager:        OK"
+else
+  echo "License Manager:        NOT RUNNING!"
+fi
+
+# Check xfServerPlus (nodebug)
+
+RESULT=`ps -ef | grep "rsynd -w -p 2356" | grep -v grep`
+
+if [[ -n "$RESULT" ]]
+then
+  echo "xfServerPlus (nodebug): OK"
+else
+  echo "xfServerPlus (nodebug): NOT RUNNING!"
+fi
+
+# Check xfServerPlus (debug)
+
+RESULT=`ps -ef | grep "rsynd -w -p 2357" | grep -v grep`
+
+if [[ -n "$RESULT" ]]
+then
+  echo "xfServerPlus (debug):   OK"
+else
+  echo "xfServerPlus (debug):   NOT RUNNING!"
+fi
+
+echo ""
+

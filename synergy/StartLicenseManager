@@ -1,0 +1,25 @@
+#!/bin/bash
+
+source /synergy/ConfigureSynergy
+
+pidof synd > /dev/null 2>&1
+
+if [ $? -ne 0 ]
+then
+  synd 1> /dev/null 2>&1
+fi
+
+RESULT=`ps -ef | grep " synd" | grep -v grep`
+
+if [[ -z "$RESULT" ]]
+then
+  if [[ "$1" != "quiet" ]]
+  then
+    echo "Starting Synergy License Manager"
+    synd
+  else
+    synd > /dev/null
+  fi
+else
+  if [[ "$1" != "quiet" ]]; then echo "Synergy License Manager is already running"; fi
+fi
