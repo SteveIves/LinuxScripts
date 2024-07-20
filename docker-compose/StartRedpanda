@@ -1,0 +1,6 @@
+#!/bin/bash
+current_dir=$(pwd)
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+cd $script_dir/redpanda
+docker compose up -d
+cd $current_dir
