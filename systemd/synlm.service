@@ -1,0 +1,12 @@
+[Unit]
+Description = Synergy License Manager
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=bash -c '/synergy/StartLicenseManager'
+ExecStop=bash -c '/synergy/StopLicenseManager'
+
+[Install]
+WantedBy = default.target
+

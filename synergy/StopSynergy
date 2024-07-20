@@ -1,5 +1,0 @@
-#!/bin/bash
-source /synergy/ConfigureSynergy
-/synergy/StopXfpl quiet
-/synergy/StopLicenseManager quiet
-

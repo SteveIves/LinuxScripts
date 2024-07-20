@@ -7,31 +7,31 @@ echo ""
 RESULT=`ps -ef | grep " synd" | grep -v grep`
 if [[ -n "$RESULT" ]]
 then
-  echo "License Manager:        OK"
+  echo "License Manager: OK"
 else
-  echo "License Manager:        NOT RUNNING!"
+  echo "License Manager: NOT RUNNING!"
 fi
 
-# Check xfServerPlus (nodebug)
+# Check xfServer
+
+RESULT=`ps -ef | grep "rsynd -p 2330" | grep -v grep`
+
+if [[ -n "$RESULT" ]]
+then
+  echo "xfServer:        OK"
+else
+  echo "xfServer:        NOT RUNNING!"
+fi
+
+# Check xfServerPlus
 
 RESULT=`ps -ef | grep "rsynd -w -p 2356" | grep -v grep`
 
 if [[ -n "$RESULT" ]]
 then
-  echo "xfServerPlus (nodebug): OK"
+  echo "xfServerPlus:    OK"
 else
-  echo "xfServerPlus (nodebug): NOT RUNNING!"
-fi
-
-# Check xfServerPlus (debug)
-
-RESULT=`ps -ef | grep "rsynd -w -p 2357" | grep -v grep`
-
-if [[ -n "$RESULT" ]]
-then
-  echo "xfServerPlus (debug):   OK"
-else
-  echo "xfServerPlus (debug):   NOT RUNNING!"
+  echo "xfServerPlus:    NOT RUNNING!"
 fi
 
 echo ""

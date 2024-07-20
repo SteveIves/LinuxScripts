@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+#-------------------------
+# Stop Synergy/DE xfServer
+#-------------------------
+source /synergy/ConfigureSynergy
+rsynd -q -c -p 2330
+

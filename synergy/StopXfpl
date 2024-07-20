@@ -1,34 +1,7 @@
 #!/bin/bash
-
+#-----------------------------
+# Stop Synergy/DE xfServerPlus
+#-----------------------------
 source /synergy/ConfigureSynergy
-
-RESULT=`ps -ef | grep "rsynd -w -p 2356" | grep -v grep`
-
-if [[ -n "$RESULT" ]]
-then
-  if [[ "$1" != "quiet" ]]
-  then
-    echo "Stopping xfServerPlus on port 2356"
-    rsynd -w -q -c -p 2356
-  else
-    rsynd -w -q -c -p 2356 > /dev/null
-  fi
-else
-  if [[ "$1" != "quiet" ]]; then echo "xfServerPlus is not running on port 2356"; fi
-fi
-
-RESULT=`ps -ef | grep "rsynd -w -p 2357" | grep -v grep`
-
-if [[ -n "$RESULT" ]]
-then
-  if [[ "$1" != "quiet" ]]
-  then
-    echo "Stopping xfServerPlus on port 2357"
-    rsynd -w -q -c -p 2357
-  else
-    rsynd -w -q -c -p 2357 > /dev/null
-  fi
-else
-  if [[ "$1" != "quiet" ]]; then echo "xfServerPlus is not running on port 2357"; fi
-fi
+rsynd -q -c -p 2356
 

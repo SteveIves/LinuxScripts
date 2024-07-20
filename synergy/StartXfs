@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+#--------------------------
+# Start Synergy/DE xfServer
+#--------------------------
+source /synergy/ConfigureSynergy
+rsynd -p 2330 -n -u stevei
+

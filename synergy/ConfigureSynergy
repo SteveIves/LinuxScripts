@@ -1,11 +1,7 @@
 #!/bin/bash
-
-# Set the default file protection masks to:
-# -rwxrwxr-x dir directories
-# -rw-rw-r-- for files
-umask 002
-
-source /synergy/1211_3278/setsde
-
+#------------------------------------
+#Configure the Synergy/DE Environment
+#------------------------------------
+source /synergy/1231-1018/setsde
 export TERM=vt100
 

@@ -1,25 +1,12 @@
 #!/bin/bash
-
+#
+#------------------------------------
+# Start the Synergy/DE License Server
+#------------------------------------
 source /synergy/ConfigureSynergy
 
-pidof synd > /dev/null 2>&1
+gateway_address=$(/sbin/ip route | awk '/default/ { print $3 }')
+lmu -nf $gateway_address
 
-if [ $? -ne 0 ]
-then
-  synd 1> /dev/null 2>&1
-fi
+synd
 
-RESULT=`ps -ef | grep " synd" | grep -v grep`
-
-if [[ -z "$RESULT" ]]
-then
-  if [[ "$1" != "quiet" ]]
-  then
-    echo "Starting Synergy License Manager"
-    synd
-  else
-    synd > /dev/null
-  fi
-else
-  if [[ "$1" != "quiet" ]]; then echo "Synergy License Manager is already running"; fi
-fi

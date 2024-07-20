@@ -1,0 +1,12 @@
+[Unit]
+Description = Synergy xfServer
+After=synlm.service
+
+[Service]
+Type=forking
+ExecStart=bash -c '/synergy/StartXfs'
+ExecStop=bash -c '/synergy/StopXfs'
+
+[Install]
+WantedBy = default.target
+

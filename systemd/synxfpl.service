@@ -1,0 +1,12 @@
+[Unit]
+Description = Synergy xfServerPlus
+After=synlm.service
+
+[Service]
+Type=forking
+ExecStart=bash -c '/synergy/StartXfpl'
+ExecStop=bash -c '/synergy/StopXfpl'
+
+[Install]
+WantedBy = default.target
+
